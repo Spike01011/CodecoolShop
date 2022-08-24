@@ -42,5 +42,6 @@ namespace Codecool.CodecoolShop.Daos.Implementations
         {
             return data;
         }
+
     }
 }

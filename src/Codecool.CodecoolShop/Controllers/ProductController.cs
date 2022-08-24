@@ -22,7 +22,8 @@ namespace Codecool.CodecoolShop.Controllers
             _logger = logger;
             ProductService = new ProductService(
                 ProductDaoMemory.GetInstance(),
-                ProductCategoryDaoMemory.GetInstance());
+                ProductCategoryDaoMemory.GetInstance(),
+                SupplierDaoMemory.GetInstance());
         }
 
         public IActionResult Index()
@@ -62,14 +63,39 @@ namespace Codecool.CodecoolShop.Controllers
 
         public IActionResult Shop()
         {
-            var games = ProductService.GetProducts();
-            return View(games.ToList());
+            ViewBag.Categories = ProductService.GetCategories().OrderBy(x => x.Id).ToList();
+            ViewBag.Devs = ProductService.GetSuppliers().OrderBy(x => x.Id).ToList();
+            var games = ProductService.GetProducts().ToList();
+            return View(games);
         }
 
-        //public IActionResult Shop(int categoryId)
-        //{
-        //    var games = ProductService.GetProductsForCategory(categoryId);
-        //    return View(games.ToList());
-        //}
+        public IActionResult GamesFiltered(int devId, int catId)
+        {
+            IEnumerable<Product> games = new List<Product>();
+            if (devId != 0 && catId != 0)
+            {
+                games = ProductService.GetByDevAndGenre(devId, catId);
+            }
+            else if (catId != 0)
+            {
+                games = ProductService.GetProductsForCategory(catId);
+            }
+            else if (devId != 0)
+            {
+                games = ProductService.GetProductBySupplier(devId);
+            }
+            else
+            {
+                games = ProductService.GetProducts();
+            }
+
+            ViewBag.Categories = ProductService.GetCategories().OrderBy(x => x.Id).ToList();
+            ViewBag.Devs = ProductService.GetSuppliers().OrderBy(x => x.Id).ToList();
+
+            ViewBag.catId = catId;
+            ViewBag.devId = devId;
+
+            return View(games.ToList());
+        }
     }
 }

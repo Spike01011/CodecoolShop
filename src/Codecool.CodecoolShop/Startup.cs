@@ -53,7 +53,7 @@ namespace Codecool.CodecoolShop
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Product}/{action=Index}/{id?}/{category?}");
+                    pattern: "{controller=Product}/{action=Index}/{id?}");
             });
 
             SetupInMemoryDatabases();
@@ -65,19 +65,19 @@ namespace Codecool.CodecoolShop
             IProductCategoryDao productCategoryDataStore = ProductCategoryDaoMemory.GetInstance();
             ISupplierDao supplierDataStore = SupplierDaoMemory.GetInstance();
 
-            Supplier fromSoftware = new Supplier() { Name = "FromSoftware inc.", Description = "Games" };
+            Supplier fromSoftware = new Supplier() { Name = "FromSoftware inc.", Description = "Games", Id = 1};
             supplierDataStore.Add(fromSoftware);
-            Supplier hopoo = new Supplier() { Name = "Hopoo Games", Description = "Games"};
+            Supplier hopoo = new Supplier() { Name = "Hopoo Games", Description = "Games", Id = 2};
             supplierDataStore.Add(hopoo);
-            Supplier valve = new Supplier() { Name = "Valve", Description = "Games"};
+            Supplier valve = new Supplier() { Name = "Valve", Description = "Games", Id = 3};
             supplierDataStore.Add(valve);
-            ProductCategory RPG = new ProductCategory() { Name = "Adventure", Department = "Games", Description = "Games"};
+            ProductCategory RPG = new ProductCategory() { Name = "Adventure", Department = "Games", Description = "Games", Id = 1};
             productCategoryDataStore.Add(RPG);
-            ProductCategory rogueLike = new ProductCategory() { Name = "Rogue-like", Department = "Games", Description = "Games" };
+            ProductCategory rogueLike = new ProductCategory() { Name = "Rogue-like", Department = "Games", Description = "Games", Id = 2};
             productCategoryDataStore.Add(rogueLike);
-            ProductCategory shooter = new ProductCategory() { Name = "Shooter", Department = "Games", Description = "Games"};
+            ProductCategory shooter = new ProductCategory() { Name = "Shooter", Department = "Games", Description = "Games", Id = 3 };
             productCategoryDataStore.Add(shooter);
-            ProductCategory puzzle = new ProductCategory() { Name = "Puzzle", Department = "Games", Description = "Games"};
+            ProductCategory puzzle = new ProductCategory() { Name = "Puzzle", Department = "Games", Description = "Games", Id = 4};
             productCategoryDataStore.Add(puzzle);
 
             productDataStore.Add(new Product() { Name = "Counter-Strike: Global Offensive" , DefaultPrice = 15m, Currency = "EURO", ProductCategory = shooter, Supplier = valve, imgURL = "https://cdn.akamai.steamstatic.com/steam/apps/730/header.jpg?t=1641233427", Description = @"Counter-Strike: Global Offensive (CS: GO) expands upon the team-based action gameplay that it pioneered when it was launched 19 years ago.

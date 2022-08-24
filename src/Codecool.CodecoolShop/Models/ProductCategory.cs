@@ -8,5 +8,10 @@ namespace Codecool.CodecoolShop.Models
         public string Department { get; set; }
 
         public Product FeaturedProduct { get; set; }
+
+        public override string ToString()
+        {
+            return new string($"Id: {Id} Name: {Name} Description: {Description}");
+        }
     }
 }
