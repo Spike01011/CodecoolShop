@@ -29,9 +29,23 @@ namespace Codecool.CodecoolShop.Controllers
         {
             //var products = ProductService.GetProductsForCategory(1);
             //return View(products.ToList());
-            var categories = ProductService.GetCategories();
+            var categories = ProductService.GetCategories().ToList();
+            if (categories.Count > 3)
+            {
+                List<ProductCategory> categoriesToSend = new List<ProductCategory>();
+                Random random = new Random();
+                while (categoriesToSend.Count < 3)
+                {
+                    var index = random.Next(0, categories.Count);
+                    categoriesToSend.Add(categories[index]);
+                    categories.RemoveAt(index);
+                }
 
-            return View(categories.ToList());
+                return View(categoriesToSend);
+            }
+            
+
+            return View(categories);
         }
 
         public IActionResult Privacy()

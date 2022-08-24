@@ -7,9 +7,9 @@
                <div class="container">
                @foreach (var element in Model)
                {
-                   <div class="col-lg-3 col-lg-3" style="display: inline-block; max-width: 350px; height: 350px">
-                       <div class="card">
-                           <img src="@element.imgURL" style="height: 50%; width: 50%; align-self: center; padding-top: 10px">
+                   <div class="col-lg-3 col-lg-3" style="display: inline-block; max-width: 350px; height: 600px; margin-top: 15px; margin-bottom: 15px">
+                       <div class="card" style="height: 600px">
+                           <img src="@element.imgURL" style="height: 100px; align-self: center; padding-top: 10px">
 
                            <div class="card-body">
                                <h5 class="card-title text-center">
@@ -19,8 +19,10 @@
                                <p class="card-text">@element.MiniDescription</p>
                                <p class="card-text">Category: @element.ProductCategory.Name</p>
                                <p class="card-text">Supplier: @element.Supplier.Name</p>
-                               <p class="card-text text-center"><strong>Price: @element.DefaultPrice.ToString("C2")</strong></p>
-                               <a href="" type="button" class="btn btn-primary" style="float: bottom">Add To Cart</a>
+                           </div>
+                           <div class="card-footer">
+                                <p class="card-text text-center"><strong>Price: @element.DefaultPrice.ToString("C2")</strong></p>
+                                <a href="" type="button" class="btn btn-primary" style="float: bottom">Add To Cart</a>
                            </div>
                        </div>
                    </div>
