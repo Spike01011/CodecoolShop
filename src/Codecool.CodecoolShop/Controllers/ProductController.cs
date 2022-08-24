@@ -27,8 +27,11 @@ namespace Codecool.CodecoolShop.Controllers
 
         public IActionResult Index()
         {
-            var products = ProductService.GetProductsForCategory(1);
-            return View(products.ToList());
+            //var products = ProductService.GetProductsForCategory(1);
+            //return View(products.ToList());
+            var categories = ProductService.GetCategories();
+
+            return View(categories.ToList());
         }
 
         public IActionResult Privacy()
@@ -41,5 +44,18 @@ namespace Codecool.CodecoolShop.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+
+        public IActionResult Shop()
+        {
+            var games = ProductService.GetProducts();
+            return View(games.ToList());
+        }
+
+        //public IActionResult Shop(int categoryId)
+        //{
+        //    var games = ProductService.GetProductsForCategory(categoryId);
+        //    return View(games.ToList());
+        //}
     }
 }

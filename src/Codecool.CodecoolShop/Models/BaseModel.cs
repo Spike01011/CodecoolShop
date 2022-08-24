@@ -10,4 +10,5 @@ namespace Codecool.CodecoolShop.Models
         public string Name { get; set; }
         public string Description { get; set; }
     }
+
 }
