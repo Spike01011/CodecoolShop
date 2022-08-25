@@ -23,7 +23,7 @@ namespace Codecool.CodecoolShop.Controllers
             ProductService = new ProductService(
                 ProductDaoMemory.GetInstance(),
                 ProductCategoryDaoMemory.GetInstance(),
-                SupplierDaoMemory.GetInstance());
+                SupplierDaoMemory.GetInstance(), ShopCart.GetInstance());
         }
 
         public IActionResult Index()
@@ -96,6 +96,19 @@ namespace Codecool.CodecoolShop.Controllers
             ViewBag.devId = devId;
 
             return View(games.ToList());
+        }
+
+
+        public IActionResult AddToCart(int id)
+        {
+            ProductService.AddToCart(id);
+            return RedirectToAction(actionName: "Shop", controllerName: "Product");
+        }
+
+        public IActionResult RemoveFromCart(int id)
+        {
+            ProductService.RemoveFromCart(id);
+            return RedirectToAction(controllerName: "Checkout", actionName: "ShowCart");
         }
     }
 }

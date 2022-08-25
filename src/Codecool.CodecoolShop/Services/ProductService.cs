@@ -10,12 +10,14 @@ namespace Codecool.CodecoolShop.Services
         private readonly IProductDao productDao;
         private readonly IProductCategoryDao productCategoryDao;
         private readonly ISupplierDao supplierDao;
+        private readonly ShopCart shopCartDao;
 
-        public ProductService(IProductDao productDao, IProductCategoryDao productCategoryDao, ISupplierDao supplierDao)
+        public ProductService(IProductDao productDao, IProductCategoryDao productCategoryDao, ISupplierDao supplierDao, ShopCart shopCartdao)
         {
             this.productDao = productDao;
             this.productCategoryDao = productCategoryDao;
             this.supplierDao = supplierDao;
+            this.shopCartDao = shopCartdao;
         }
 
         public ProductCategory GetProductCategory(int categoryId)
@@ -57,5 +59,40 @@ namespace Codecool.CodecoolShop.Services
 
             return productDao.GetBy(dev).Intersect(productDao.GetBy(cat));
         }
+
+
+        public IEnumerable<Product> GetShoppingCartItems()
+        {
+            return shopCartDao.GetAll();
+        }
+
+        public Product GetProduct(int id)
+        {
+            return productDao.Get(id);
+        }
+
+        public void AddToCart(int id)
+        {
+            var game = GetProduct(id);
+            shopCartDao.Add(game);
+        }
+
+        public void RemoveFromCart(int id)
+        {
+            shopCartDao.Remove(id);
+        }
+
+        public List<Product> GetCartProducts()
+        {
+            return shopCartDao.GetAll().ToList();
+        }
+
+        public void EmptyCart()
+        {
+            shopCartDao.EmptyCart();
+        }
+
+
+
     }
 }

@@ -81,7 +81,7 @@ namespace Codecool.CodecoolShop
             ProductCategory puzzle = new ProductCategory() { Name = "Puzzle", Department = "Games", Description = "Games", Id = 4};
             productCategoryDataStore.Add(puzzle);
 
-            productDataStore.Add(new Product() { Name = "Counter-Strike: Global Offensive" , DefaultPrice = 15m, Currency = "EURO", ProductCategory = shooter, Supplier = valve, imgURL = "https://cdn.akamai.steamstatic.com/steam/apps/730/header.jpg?t=1641233427", Description = @"Counter-Strike: Global Offensive (CS: GO) expands upon the team-based action gameplay that it pioneered when it was launched 19 years ago.
+            productDataStore.Add(new Product() { Id = 1, Name = "Counter-Strike: Global Offensive" , DefaultPrice = 15m, Currency = "EURO", ProductCategory = shooter, Supplier = valve, imgURL = "https://cdn.akamai.steamstatic.com/steam/apps/730/header.jpg?t=1641233427", Description = @"Counter-Strike: Global Offensive (CS: GO) expands upon the team-based action gameplay that it pioneered when it was launched 19 years ago.
 
 CS: GO features new maps, characters, weapons, and game modes, and delivers updated versions of the classic CS content (de_dust2, etc.).
 
@@ -90,11 +90,11 @@ CS: GO features new maps, characters, weapons, and game modes, and delivers upda
                 it has continued to be one of the most - played games in the world,
                 headline competitive gaming tournaments and selling over 25 million units worldwide across the franchise.CS: GO promises to expand on CS' award-winning gameplay and deliver it to gamers on the PC as well as the next gen consoles and the Mac.' "});
 
-            productDataStore.Add(new Product() {Name = "Left 4 Dead", DefaultPrice = 8.2m, ProductCategory = shooter, Supplier = valve, Currency = "EURO", imgURL = "https://cdn.akamai.steamstatic.com/steam/apps/500/header.jpg?t=1623087651", Description = @"From Valve (the creators of Counter-Strike, Half-Life and more) comes Left 4 Dead, a co-op action horror game for the PC and Xbox 360 that casts up to four players in an epic struggle for survival against swarming zombie hordes and terrifying mutant monsters.
+            productDataStore.Add(new Product() {Id=2, Name = "Left 4 Dead", DefaultPrice = 8.2m, ProductCategory = shooter, Supplier = valve, Currency = "EURO", imgURL = "https://cdn.akamai.steamstatic.com/steam/apps/500/header.jpg?t=1623087651", Description = @"From Valve (the creators of Counter-Strike, Half-Life and more) comes Left 4 Dead, a co-op action horror game for the PC and Xbox 360 that casts up to four players in an epic struggle for survival against swarming zombie hordes and terrifying mutant monsters.
 Set in the immediate aftermath of the zombie apocalypse, L4D's survival co-op mode lets you blast a path through the infected in four unique “movies,” guiding your survivors across the rooftops of an abandoned metropolis, through rural ghost towns and pitch-black forests in your quest to escape a devastated Ground Zero crawling with infected enemies. Each 'movie' is comprised of five large maps, and can be played by one to four human players, with an emphasis on team-based strategy and objectives.
 New technology dubbed 'the AI Director' is used to generate a unique gameplay experience every time you play. The Director tailors the frequency and ferocity of the zombie attacks to your performance, putting you in the middle of a fast-paced, but not overwhelming, Hollywood horror movie." });
 
-            productDataStore.Add(new Product() {Name = "Left 4 Dead 2", DefaultPrice = 8.2m, Currency = "EURO", Supplier = valve, ProductCategory = shooter, imgURL = "https://cdn.akamai.steamstatic.com/steam/apps/550/header.jpg?t=1657220736", Description = @"Set in the zombie apocalypse, Left 4 Dead 2 (L4D2) is the highly anticipated sequel to the award-winning Left 4 Dead, the #1 co-op game of 2008.
+            productDataStore.Add(new Product() {Id=3, Name = "Left 4 Dead 2", DefaultPrice = 8.2m, Currency = "EURO", Supplier = valve, ProductCategory = shooter, imgURL = "https://cdn.akamai.steamstatic.com/steam/apps/550/header.jpg?t=1657220736", Description = @"Set in the zombie apocalypse, Left 4 Dead 2 (L4D2) is the highly anticipated sequel to the award-winning Left 4 Dead, the #1 co-op game of 2008.
 This co-operative action horror FPS takes you and your friends through the cities, swamps and cemeteries of the Deep South, from Savannah to New Orleans across five expansive campaigns.
 You'll play as one of four new survivors armed with a wide and devastating array of classic and upgraded weapons. In addition to firearms, you'll also get a chance to take out some aggression on infected with a variety of carnage-creating melee weapons, from chainsaws to axes and even the deadly frying pan.
 You'll be putting these weapons to the test against (or playing as in Versus) three horrific and formidable new Special Infected. You'll also encounter five new uncommon common infected, including the terrifying Mudmen.
@@ -102,6 +102,7 @@ Helping to take L4D's frantic, action-packed gameplay to the next level is AI Di
 
             productDataStore.Add(new Product()
             {
+                Id=4,
                 Name = "Portal", DefaultPrice = 8.2m, Currency = "EURO", ProductCategory = puzzle, Supplier = valve,
                 imgURL = "https://cdn.akamai.steamstatic.com/steam/apps/400/header.jpg?t=1608593358", Description =
                     @"Portal™ is a new single player game from Valve. Set in the mysterious Aperture Science Laboratories, Portal has been called one of the most innovative new games on the horizon and will offer gamers hours of unique gameplay.
@@ -111,16 +112,16 @@ The game is designed to change the way players approach, manipulate, and surmise
 Players must solve physical puzzles and challenges by opening portals to maneuvering objects, and themselves, through space."
             });
 
-            productDataStore.Add(new Product() { Name = "Portal 2", DefaultPrice = 8.2m, Currency = "EURO", Supplier = valve, ProductCategory = puzzle, imgURL = "https://cdn.akamai.steamstatic.com/steam/apps/620/header.jpg?t=1610490805", Description = @"Portal 2 draws from the award-winning formula of innovative gameplay, story, and music that earned the original Portal over 70 industry accolades and created a cult following.
+            productDataStore.Add(new Product() {Id=5, Name = "Portal 2", DefaultPrice = 8.2m, Currency = "EURO", Supplier = valve, ProductCategory = puzzle, imgURL = "https://cdn.akamai.steamstatic.com/steam/apps/620/header.jpg?t=1610490805", Description = @"Portal 2 draws from the award-winning formula of innovative gameplay, story, and music that earned the original Portal over 70 industry accolades and created a cult following.
 
 The single-player portion of Portal 2 introduces a cast of dynamic new characters, a host of fresh puzzle elements, and a much larger set of devious test chambers. Players will explore never-before-seen areas of the Aperture Science Labs and be reunited with GLaDOS, the occasionally murderous computer companion who guided them through the original game.
 
 The game’s two-player cooperative mode features its own entirely separate campaign with a unique story, test chambers, and two new player characters. This new mode forces players to reconsider everything they thought they knew about portals. Success will require them to not just act cooperatively, but to think cooperatively.
 " });
             
-            productDataStore.Add(new Product() { Name = "Risk of Rain 2", DefaultPrice = 24.9m, Currency = "EURO", Description = @"Over a dozen handcrafted locales await, each packed with challenging monsters and enormous bosses that oppose your continued existence. Fight your way to the final boss and escape or continue your run indefinitely to see just how long you can survive. A unique scaling system means both you and your foes limitlessly increase in power over the course of a game." , ProductCategory = rogueLike, Supplier = hopoo, imgURL = "https://cdn.akamai.steamstatic.com/steam/apps/632360/header.jpg?t=1660063598" });
+            productDataStore.Add(new Product() {Id=6, Name = "Risk of Rain 2", DefaultPrice = 24.9m, Currency = "EURO", Description = @"Over a dozen handcrafted locales await, each packed with challenging monsters and enormous bosses that oppose your continued existence. Fight your way to the final boss and escape or continue your run indefinitely to see just how long you can survive. A unique scaling system means both you and your foes limitlessly increase in power over the course of a game." , ProductCategory = rogueLike, Supplier = hopoo, imgURL = "https://cdn.akamai.steamstatic.com/steam/apps/632360/header.jpg?t=1660063598" });
             
-            productDataStore.Add(new Product() { Name = "ELDEN RING", DefaultPrice = 60.0m, Currency = "EURO", Description = @"Rise, Tarnished, and be guided by grace to brandish the power of the Elden Ring and become an Elden Lord in the Lands Between.
+            productDataStore.Add(new Product() {Id=7, Name = "ELDEN RING", DefaultPrice = 60.0m, Currency = "EURO", Description = @"Rise, Tarnished, and be guided by grace to brandish the power of the Elden Ring and become an Elden Lord in the Lands Between.
 
                 In the Lands Between ruled by Queen Marika the Eternal,
                 the Elden Ring,
