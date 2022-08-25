@@ -62,14 +62,13 @@
                                <h5 class="card-title text-center">
                                    @element.Name
                                </h5>
-                               <h5 class="card-title">@element.Name</h5>
                                <p class="card-text">@element.MiniDescription</p>
                                <p class="card-text">Category: @element.ProductCategory.Name</p>
                                <p class="card-text">Supplier: @element.Supplier.Name</p>
                            </div>
                            <div class="card-footer">
                                 <p class="card-text text-center"><strong>Price: @element.DefaultPrice.ToString("C2")</strong></p>
-                                <a href="" type="button" class="btn btn-primary" style="float: bottom">Add To Cart</a>
+                                <div class="d-flex justify-content-center" style="margin-bottom: 20px;"><a href="" type="button" class="btn btn-primary">Add To Cart</a></div>
                            </div>
                        </div>
                    </div>

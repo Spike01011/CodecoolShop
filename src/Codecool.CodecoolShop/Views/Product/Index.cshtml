@@ -12,8 +12,8 @@
 <div class="container">
     @foreach (var element in Model)
     {
-        <div class="col-lg-3 col-lg-3" style="display: inline-block; max-width: 350px; height: 600px;">
-            <div class="card" style="height: 600px">
+        <div class="col-lg-3 col-lg-3" style="display: inline-block; max-width: 350px; height: 650px;">
+            <div class="card" style="height: 650px">
                 <img src="@element.FeaturedProduct.imgURL" style="height: 100px; align-self: center; padding-top: 10px">
 
                 <div class="card-body">
@@ -26,8 +26,9 @@
                     <p class="card-text">Supplier: @element.FeaturedProduct.Supplier.Name</p>
                 </div>
                 <div class="card-footer">
-                    <p class="card-text text-center "><strong>Price: @element.FeaturedProduct.DefaultPrice.ToString("C2")</strong></p>
-                    <a href="" type="button" class="btn btn-primary">Add To Cart</a>
+                    <p class="card-text text-center"><strong>Price: @element.FeaturedProduct.DefaultPrice.ToString("C2")</strong></p>
+                    <div class="d-flex justify-content-center" style="margin-bottom: 20px;"><a href="" type="button" class="btn btn-primary">Add To Cart</a></div>
+                    
                 </div>
             </div>
         </div>
