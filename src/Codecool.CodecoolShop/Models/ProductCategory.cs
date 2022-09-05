@@ -6,5 +6,12 @@ namespace Codecool.CodecoolShop.Models
     {
         public List<Product> Products { get; set; }
         public string Department { get; set; }
+
+        public Product FeaturedProduct { get; set; }
+
+        public override string ToString()
+        {
+            return new string($"Id: {Id} Name: {Name} Description: {Description}");
+        }
     }
 }

@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Cart";
+}
+
+
+@model List<Codecool.CodecoolShop.Models.Product>
+
+<div class="container">
+    @foreach (var element in Model)
+    {
+        <div class="col-lg-3 col-lg-3" style="display: inline-block; max-width: 350px; height: 600px; margin-top: 15px; margin-bottom: 15px">
+            <div class="card" style="height: 600px">
+                <img src="@element.imgURL" style="height: 100px; align-self: center; padding-top: 10px">
+
+                <div class="card-body">
+                    <h5 class="card-title text-center">
+                        @element.Name
+                    </h5>
+                    <p class="card-text">@element.MiniDescription</p>
+                    <p class="card-text">Category: @element.ProductCategory.Name</p>
+                    <p class="card-text">Supplier: @element.Supplier.Name</p>
+                </div>
+                <div class="card-footer">
+                    <p class="card-text text-center"><strong>Price: @element.DefaultPrice.ToString("C2")</strong></p>
+                    <div class="d-flex justify-content-center" style="margin-bottom: 20px;"><a type="button" class="btn btn-danger" asp-area="" asp-controller="Product" asp-action="RemoveFromCart" asp-route-id="@element.Id">Delete</a></div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<div>
+    <h3>Total Price: @ViewBag.TotalPrice EURO </h3>
+    <a type="button" asp-area="" asp-controller="Checkout" asp-action="CheckoutForm" class="btn btn-primary">Proceed To Payment</a>
+</div>

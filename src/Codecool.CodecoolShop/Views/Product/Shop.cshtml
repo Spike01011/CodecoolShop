@@ -1,0 +1,76 @@
+﻿@{
+    ViewData["Title"] = "Shop";
+}
+
+
+<form asp-controller="Product" asp-action="GamesFiltered">
+    <select name="devId" id="devs" onchange="{this.form.submit()}">
+        @if (ViewBag.devId == 0)
+        {
+            <option value="0" selected>ALL</option>
+        }
+        else
+        {
+        <option value="0">ALL</option>
+        }
+        @for(int i=0; i < ViewBag.Devs.Count; i++)
+        {
+            @if (ViewBag.devId == ViewBag.Devs[i].Id)
+            {
+            <option value="@ViewBag.Devs[i].Id" selected>@ViewBag.Devs[i].Name</option>
+            }
+            else
+            {
+            <option value="@ViewBag.Devs[i].Id">@ViewBag.Devs[i].Name</option>
+            }
+        }
+    </select>
+
+    <select name="catId" id="genres" onchange="{this.form.submit()}">
+        @if (ViewBag.catId == 0)
+        {
+            <option value="0" selected>ALL</option>
+        }
+        else
+        {
+            <option value="0">ALL</option>
+        }
+        @for(int i=0; i < ViewBag.Categories.Count; i++)
+        {
+            @if (ViewBag.catId == @ViewBag.Categories[i].Id)
+            {
+                <option value="@ViewBag.Categories[i].Id" selected>@ViewBag.Categories[i].Name</option>
+            }
+            else
+            {
+            <option value="@ViewBag.Categories[i].Id">@ViewBag.Categories[i].Name</option>
+            }
+        }
+    </select>
+</form>
+
+@model List<Codecool.CodecoolShop.Models.Product>
+    
+               <div class="container">
+               @foreach (var element in Model)
+               {
+                   <div class="col-lg-3 col-lg-3" style="display: inline-block; max-width: 350px; height: 600px; margin-top: 15px; margin-bottom: 15px">
+                       <div class="card" style="height: 600px">
+                           <img src="@element.imgURL" style="height: 100px; align-self: center; padding-top: 10px">
+
+                           <div class="card-body">
+                               <h5 class="card-title text-center">
+                                   @element.Name
+                               </h5>
+                               <p class="card-text">@element.MiniDescription</p>
+                               <p class="card-text">Category: @element.ProductCategory.Name</p>
+                               <p class="card-text">Supplier: @element.Supplier.Name</p>
+                           </div>
+                           <div class="card-footer">
+                                <p class="card-text text-center"><strong>Price: @element.DefaultPrice.ToString("C2")</strong></p>
+                                <div class="d-flex justify-content-center" style="margin-bottom: 20px;"><a type="button" class="btn btn-primary" asp-area="" asp-controller="Product" asp-action="AddToCart" asp-route-id="@element.Id">Add To Cart</a></div>
+                           </div>
+                       </div>
+                   </div>
+                   }
+               </div>

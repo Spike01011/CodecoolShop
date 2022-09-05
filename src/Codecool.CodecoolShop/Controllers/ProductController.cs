@@ -22,13 +22,31 @@ namespace Codecool.CodecoolShop.Controllers
             _logger = logger;
             ProductService = new ProductService(
                 ProductDaoMemory.GetInstance(),
-                ProductCategoryDaoMemory.GetInstance());
+                ProductCategoryDaoMemory.GetInstance(),
+                SupplierDaoMemory.GetInstance(), ShopCart.GetInstance());
         }
 
         public IActionResult Index()
         {
-            var products = ProductService.GetProductsForCategory(1);
-            return View(products.ToList());
+            //var products = ProductService.GetProductsForCategory(1);
+            //return View(products.ToList());
+            var categories = ProductService.GetCategories().ToList();
+            if (categories.Count > 3)
+            {
+                List<ProductCategory> categoriesToSend = new List<ProductCategory>();
+                Random random = new Random();
+                while (categoriesToSend.Count < 3)
+                {
+                    var index = random.Next(0, categories.Count);
+                    categoriesToSend.Add(categories[index]);
+                    categories.RemoveAt(index);
+                }
+
+                return View(categoriesToSend);
+            }
+            
+
+            return View(categories);
         }
 
         public IActionResult Privacy()
@@ -40,6 +58,57 @@ namespace Codecool.CodecoolShop.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+
+        public IActionResult Shop()
+        {
+            ViewBag.Categories = ProductService.GetCategories().OrderBy(x => x.Id).ToList();
+            ViewBag.Devs = ProductService.GetSuppliers().OrderBy(x => x.Id).ToList();
+            var games = ProductService.GetProducts().ToList();
+            return View(games);
+        }
+
+        public IActionResult GamesFiltered(int devId, int catId)
+        {
+            IEnumerable<Product> games = new List<Product>();
+            if (devId != 0 && catId != 0)
+            {
+                games = ProductService.GetByDevAndGenre(devId, catId);
+            }
+            else if (catId != 0)
+            {
+                games = ProductService.GetProductsForCategory(catId);
+            }
+            else if (devId != 0)
+            {
+                games = ProductService.GetProductBySupplier(devId);
+            }
+            else
+            {
+                games = ProductService.GetProducts();
+            }
+
+            ViewBag.Categories = ProductService.GetCategories().OrderBy(x => x.Id).ToList();
+            ViewBag.Devs = ProductService.GetSuppliers().OrderBy(x => x.Id).ToList();
+
+            ViewBag.catId = catId;
+            ViewBag.devId = devId;
+
+            return View(games.ToList());
+        }
+
+
+        public IActionResult AddToCart(int id)
+        {
+            ProductService.AddToCart(id);
+            return RedirectToAction(actionName: "Shop", controllerName: "Product");
+        }
+
+        public IActionResult RemoveFromCart(int id)
+        {
+            ProductService.RemoveFromCart(id);
+            return RedirectToAction(controllerName: "Checkout", actionName: "ShowCart");
         }
     }
 }

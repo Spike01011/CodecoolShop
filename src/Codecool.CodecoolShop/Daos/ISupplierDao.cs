@@ -4,5 +4,6 @@ namespace Codecool.CodecoolShop.Daos
 {
     public interface ISupplierDao : IDao<Supplier>
     {
+        Supplier Get(int id);
     }
 }
