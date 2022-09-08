@@ -22,15 +22,28 @@ namespace Codecool.CodecoolShop.Controllers
         public CheckoutController(ILogger<ProductController> logger)
         {
             _logger = logger;
-            ProductService = new ProductService(
-                ProductDaoMemory.GetInstance(),
-                ProductCategoryDaoMemory.GetInstance(),
-                SupplierDaoMemory.GetInstance(),
-            ShopCart.GetInstance());
+            SqlManager sqlManager = SqlManager.GetInstance();
+            if (!sqlManager.testConnection())
+            {
+                ProductService = new ProductService(
+                    ProductDaoMemory.GetInstance(),
+                    ProductCategoryDaoMemory.GetInstance(),
+                    SupplierDaoMemory.GetInstance(),
+                    ShopCartMemory.GetInstance());
+            }
+            else
+            {
+                ProductService = new ProductService(
+                    ProductDaoDB.GetInstance(),
+                    ProductCategoryDaoDB.GetInstance(),
+                    SupplierDaoDB.GetInstance(),
+                    ShopCartDB.GetInstance());
+            }
         }
 
         public IActionResult ShowCart()
         {
+            ViewBag.Username = MyGlobals.Username;
             var products = ProductService.GetCartProducts();
             ViewBag.TotalPrice = products.Sum(x => x.DefaultPrice);
             return View(products);
@@ -45,6 +58,7 @@ namespace Codecool.CodecoolShop.Controllers
         [HttpGet]
         public IActionResult CheckoutForm()
         {
+            ViewBag.Username = MyGlobals.Username;
             var products = ProductService.GetCartProducts();
             ViewBag.TotalPrice = products.Sum(x => x.DefaultPrice);
             return View(new Checkout());
@@ -53,12 +67,14 @@ namespace Codecool.CodecoolShop.Controllers
         [HttpPost]
         public IActionResult ValidationCheckout(Checkout model)
         {
+            ViewBag.Username = MyGlobals.Username;
             return (ModelState.IsValid) ? RedirectToAction("PaymentForm", "Checkout") : View("CheckoutForm",new Checkout());
         }
 
         [HttpGet]
         public IActionResult PaymentForm()
         {
+            ViewBag.Username = MyGlobals.Username;
             var products = ProductService.GetCartProducts();
             ViewBag.TotalPrice = products.Sum(x => x.DefaultPrice);
             return View(new Payment());
@@ -67,22 +83,13 @@ namespace Codecool.CodecoolShop.Controllers
         [HttpPost]
         public IActionResult ValidationPayment(Payment model)
         {
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
-                    throw;
-                }
-            }
+            ViewBag.Username = MyGlobals.Username;
             return (ModelState.IsValid) ? RedirectToAction("ThankYouForPurchase", "Checkout") : View("PaymentForm", new Payment());
         }
 
         public IActionResult ThankYouForPurchase()
         {
+            ViewBag.Username = MyGlobals.Username;
             var products = ProductService.GetCartProducts();
             ViewBag.TotalPrice = ProductService.GetCartProducts().Sum(x => x.DefaultPrice);
             ProductService.EmptyCart();

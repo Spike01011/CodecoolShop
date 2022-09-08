@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Codecool.CodecoolShop.Daos;
 using Codecool.CodecoolShop.Models;
+using Codecool.CodecoolShop.Daos.Implementations;
 
 namespace Codecool.CodecoolShop.Services
 {
@@ -12,14 +13,14 @@ namespace Codecool.CodecoolShop.Services
         private readonly IProductDao productDao;
         private readonly IProductCategoryDao productCategoryDao;
         private readonly ISupplierDao supplierDao;
-        private readonly ShopCart shopCartDao;
+        private readonly ICartDao _shopCartMemoryDao;
 
-        public ProductService(IProductDao productDao, IProductCategoryDao productCategoryDao, ISupplierDao supplierDao, ShopCart shopCartdao)
+        public ProductService(IProductDao productDao, IProductCategoryDao productCategoryDao, ISupplierDao supplierDao, ICartDao shopCartdao)
         {
             this.productDao = productDao;
             this.productCategoryDao = productCategoryDao;
             this.supplierDao = supplierDao;
-            this.shopCartDao = shopCartdao;
+            this._shopCartMemoryDao = shopCartdao;
         }
 
         public ProductCategory GetProductCategory(int categoryId)
@@ -65,7 +66,7 @@ namespace Codecool.CodecoolShop.Services
 
         public IEnumerable<Product> GetShoppingCartItems()
         {
-            return shopCartDao.GetAll();
+            return _shopCartMemoryDao.GetAll();
         }
 
         public Product GetProduct(int id)
@@ -76,22 +77,22 @@ namespace Codecool.CodecoolShop.Services
         public void AddToCart(int id)
         {
             var game = GetProduct(id);
-            shopCartDao.Add(game);
+            _shopCartMemoryDao.Add(game);
         }
 
         public void RemoveFromCart(int id)
         {
-            shopCartDao.Remove(id);
+            _shopCartMemoryDao.Remove(id);
         }
 
         public List<Product> GetCartProducts()
         {
-            return shopCartDao.GetAll().ToList();
+            return _shopCartMemoryDao.GetAll().ToList();
         }
 
         public void EmptyCart()
         {
-            shopCartDao.EmptyCart();
+            _shopCartMemoryDao.EmptyCart();
         }
 
 

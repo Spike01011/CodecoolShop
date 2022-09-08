@@ -42,5 +42,10 @@ namespace Codecool.CodecoolShop.Daos.Implementations
         {
             return data;
         }
+
+        public Supplier GetBy(string name)
+        {
+            return data.Find(x => x.Name == name);
+        }
     }
 }

@@ -60,5 +60,11 @@ namespace Codecool.CodecoolShop.Daos.Implementations
         {
             return data.Find(x => x.Name == name);
         }
+
+        public Product Get(int id, ProductCategory category = null)
+        {
+            var product = this.Get(id);
+            return product;
+        }
     }
 }

@@ -1,25 +1,25 @@
-﻿using System.Collections.Generic;
+﻿using Codecool.CodecoolShop.Models;
+using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 
-namespace Codecool.CodecoolShop.Models;
+namespace Codecool.CodecoolShop.Daos.Implementations;
 
-public class ShopCart
+public class ShopCartMemory : ICartDao
 {
-    private static ShopCart instance = null;
+    private static ShopCartMemory instance = null;
     private List<Product> cart = new List<Product>();
     private decimal totalCost => cart.Sum(x => x.DefaultPrice);
 
-    private ShopCart()
+    private ShopCartMemory()
     {
-
     }
 
-    public static ShopCart GetInstance()
+    public static ShopCartMemory GetInstance()
     {
         if (instance == null)
         {
-            instance = new ShopCart();
+            instance = new ShopCartMemory();
         }
 
         return instance;
@@ -49,6 +49,11 @@ public class ShopCart
     public void EmptyCart()
     {
         cart.Clear();
+    }
+
+    public void CreateCart(int userId)
+    {
+
     }
 
 }

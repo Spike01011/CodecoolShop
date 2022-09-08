@@ -1,0 +1,48 @@
+﻿@{
+    ViewData["Title"] = "LogIn";
+}
+
+<a type="button" class="btn btn-primary" asp-area="" asp-controller="Login" asp-action="Signup">Sign Up instead</a>
+
+@if (ViewBag.wrongInput)
+{
+    <div>Wrong Credentials</div>
+}
+
+@model Codecool.CodecoolShop.Models.LoginData
+
+@using (Html.BeginForm("LoginValidation", "Login"))
+{
+    <input id="id" type="hidden"/>
+    <div class="container">
+        <div class="first-page-main-container"></div>
+            
+        <div class="all-info-container">
+            <div class="nav-container">
+            </div>
+                
+            <div class="form-container">
+                    
+                <div class="container-input-fullwidth">
+                    <label asp-for="UserName" class="label-form-details">User name</label>
+                    @Html.EditorFor(model => model.UserName, new { htmlAttributes = new 
+                    { @class = "input-fullwidth-form-details", size = 32,  maxlength="90" , autocomplete="off", 
+                        placeholder="Write your User Name" } })
+                </div>
+
+                <div class="container-input-fullwidth">
+                    <label asp-for="Password" class="label-form-details">Password</label>
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new 
+                    { @class = "input-fullwidth-form-details", type="password", size = 32,  maxlength="90" , autocomplete="off", 
+                        placeholder="Write your Password" } })
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+
+                <div>
+                    <input type="submit" value="Log in" id="Submit" class="btn btn-default" style="background-color: #1b6ec2; color: white" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+}

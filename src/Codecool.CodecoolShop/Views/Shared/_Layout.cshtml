@@ -29,8 +29,16 @@
                         </li>
                     </ul>
                 </div>
-                <a type="button" class="float-right nav-item nav-link text-light" style="border: none; background-color: #181919">Login</a>
-                <a type="button" asp-area="" asp-controller="Checkout" asp-action="ShowCart" class="float-right nav-item nav-link text-light" style="border: none; background-color: #181919">Cart</a>
+                @if (ViewBag.Username == null)
+                {
+                    <a type="button" class="float-right nav-item nav-link text-light" asp-area="" asp-controller="Login" asp-action="Login" style="border: none; background-color: #181919">LogIn</a>
+
+                }
+                else
+                {
+                    <a type="button" class="float-right nav-item nav-link text-light" asp-area="" asp-controller="Login" asp-action="LogOut" style="border: none; background-color: #181919">LogOut</a>
+                    <a type="button" asp-area="" asp-controller="Checkout" asp-action="ShowCart" class="float-right nav-item nav-link text-light" style="border: none; background-color: #181919">Cart</a>
+                }
             </div>
         </nav>
     </header>
