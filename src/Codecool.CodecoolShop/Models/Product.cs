@@ -38,5 +38,18 @@ namespace Codecool.CodecoolShop.Models
 
             return Description;
         }
+
+        public override bool Equals(object obj)
+        {
+            Product newObj;
+            if (obj == null) return false;
+            if (obj is Product)
+            {
+                newObj = (Product)obj;
+                return newObj.Id == this.Id;
+            }
+
+            return false;
+        }
     }
 }

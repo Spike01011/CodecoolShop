@@ -156,6 +156,10 @@ public class ShopCartDB : ICartDao
             using (var connection = new SqlConnection(_connectionString))
             {
                 var cmd = new SqlCommand(command, connection);
+                if (MyGlobals.Id == null)
+                {
+                    return new List<Product>();
+                }
                 var userId = MyGlobals.Id.Value;
                 if (connection.State == ConnectionState.Closed) connection.Open();
                 cmd.Parameters.AddWithValue("@user_id", userId);

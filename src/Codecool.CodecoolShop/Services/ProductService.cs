@@ -59,8 +59,20 @@ namespace Codecool.CodecoolShop.Services
         {
             var cat = productCategoryDao.Get(catId);
             var dev = supplierDao.Get(devId);
-
-            return productDao.GetBy(dev).Intersect(productDao.GetBy(cat));
+            var bycat = productDao.GetBy(cat).ToList();
+            var bydev = productDao.GetBy(dev).ToList();
+            var result = new List<Product>();
+            foreach (var item in bycat)
+            {
+                foreach (var item2 in bydev)
+                {
+                    if (item2.Equals(item))
+                    {
+                        result.Add(item);
+                    }
+                }
+            }
+            return result;
         }
 
 

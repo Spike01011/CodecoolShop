@@ -44,11 +44,7 @@ namespace Codecool.CodecoolShop.Controllers
                         MyGlobals.Username = expected.UserName;
                         return RedirectToAction("Index", "Product");
                     }
-
-                    return RedirectToAction("Login", "Login", new { wrongInput = true });
                 }
-
-                return RedirectToAction("Login", "Login", new { wrongInput = true });
             }
 
             return RedirectToAction("Login", "Login", new{ wrongInput = true});

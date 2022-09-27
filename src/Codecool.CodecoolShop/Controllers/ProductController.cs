@@ -17,9 +17,11 @@ namespace Codecool.CodecoolShop.Controllers
     {
         private readonly ILogger<ProductController> _logger;
         public ProductService ProductService { get; set; }
+        private IProductDao _productDao;
 
-        public ProductController(ILogger<ProductController> logger)
+        public ProductController(ILogger<ProductController> logger/*, IProductDao productDao*/)
         {
+            //_productDao = productDao;
             _logger = logger;
             SqlManager sqlManager = SqlManager.GetInstance();
             if (!sqlManager.testConnection())
