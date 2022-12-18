@@ -2,7 +2,7 @@
 
 ### About the Project:
 
-- Clio is an Digital Product Store That. We're selling Digital copies of video games from Developers all around the world.
+- Clio is an Digital Product Store that is selling Digital copies of video games from Developers all around the world.
 
 ### Used technologies:
 #### Backend technologies:
