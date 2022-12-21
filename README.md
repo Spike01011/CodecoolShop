@@ -9,6 +9,7 @@
 1. [C#](https://learn.microsoft.com/en-us/dotnet/csharp/)
 2. [ASP.NET CORE Framework](https://learn.microsoft.com/en-us/aspnet/core/introduction-to-aspnet-core?view=aspnetcore-7.0)
 3. [MicrosoftSQL Server](https://learn.microsoft.com/en-us/sql/sql-server/?view=sql-server-ver16)
+4. [Visual Studio](https://visualstudio.microsoft.com/)
 #### Frontend technologies:
 1. [Razor Pages](https://learn.microsoft.com/en-us/aspnet/core/razor-pages/?view=aspnetcore-7.0&tabs=visual-studio)
 2. [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
