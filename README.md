@@ -24,3 +24,11 @@
 ### How to Run the Project?
 - Clone the [Repo](https://github.com/Spike01011/CodecoolShop)
 - You only should to run the application.
+
+
+![Index-not-logged-in](MdPhotos/index_not_logged_in.png)
+![index](MdPhotos/index.png)
+![cart](MdPhotos/cart.png)
+![checkout-1](MdPhotos/checkout_1.png)
+![checkout-2](MdPhotos/checkout_2.png)
+![confirmation](MdPhotos/confirmation.png)
